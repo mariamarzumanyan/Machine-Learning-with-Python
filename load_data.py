@@ -54,55 +54,6 @@ dte
 
 X, y = load_data()
 
-
-# The following tests check that your load_data function reads in the correct number of rows, the correct number of unique values for y, and the same training data as the correct implementation
-
-Xtrain, ytrain = load_data()
-Xtrain_grader, ytrain_grader = load_data_grader()
-Xtest = load_data(file='data.csv', label=False)
-Xtest_grader = load_data_grader(file='data.csv', label=False)
-
-def load_data_test1():
-    return (len(Xtrain) == len(ytrain))
-
-def load_data_test2():
-    return (len(Xtrain) == len(Xtrain_grader))
-
-def load_data_test3():
-    y_unique = np.sort(np.unique(ytrain))
-    y_grader_unique = np.sort(np.unique(ytrain_grader))
-    
-    if len(y_unique) != len(y_grader_unique):
-        return False
-    else:
-        return np.linalg.norm(y_unique - y_grader_unique) < 1e-7
-    
-def load_data_test4():
-    return(type(Xtrain)==np.ndarray and type(ytrain)==np.ndarray and type(Xtest)==np.ndarray)
-
-def load_data_test5():
-    Xtrain.sort()
-    Xtrain_grader.sort()
-    return np.linalg.norm(Xtrain-Xtrain_grader)<1e-07
-
-def load_data_test6():
-    ntr,dtr=Xtrain.shape
-    nte,dte=Xtest.shape
-    return dtr==dte
-
-def load_data_test7():
-    Xtest.sort()
-    Xtest_grader.sort()
-    return np.linalg.norm(Xtest-Xtest_grader)<1e-07
-
-runtest(load_data_test1,'load_data_test1')
-runtest(load_data_test2,'load_data_test2')
-runtest(load_data_test3,'load_data_test3')
-runtest(load_data_test4,'load_data_test4 (Testing for correct types)')
-runtest(load_data_test5,'load_data_test5 (Testing training data for correctness)')
-runtest(load_data_test6,'load_data_test6 (training and testing data dimensions should match)')
-runtest(load_data_test7,'load_data_test7 (Testing test data for correctness)')
-
 # Create a regression with no restriction on its depth
 # if you want to create a tree of depth k
 # then call RegressionTree(depth=k)
